@@ -1,2 +1,2 @@
 # evil-licenses-api
- Rest apli for test project
+ Rest api for test project
