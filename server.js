@@ -1,12 +1,14 @@
 const fastify = require('fastify')();
-const fastifyBcrypt = require('fastify-bcrypt-plugin'); //para encryptación hash
+const fastifyBcrypt = require('fastify-bcrypt'); //para encryptación hash
 const fastifyPostgres = require('fastify-postgres'); //conector de bb
+const fastifyAuth = require('fastify-auth'); //plugin de gestion de autenticación
+const fastifyJwt = require('fastify-jwt'); //plugin para creación y comprobación de jsonWebTokens
 
 /**
  * RUTAS
  */
-const users = require('./routes/users');
-
+const usersRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
 
 /**
  * REGISTRO DE PLUGINS GLOBALES
@@ -21,14 +23,17 @@ fastify.register(fastifyPostgres, {
 });
 
 fastify.register(fastifyBcrypt);
-
+fastify.register(fastifyAuth);
+fastify.register(fastifyJwt, { secret: '_5+rUs0.8IKw'});
+fastify.register(require('./controllers/schemas'));
 
 // Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' };
 });
 
-fastify.register(users, {prefix: '/api/v1/users'});
+fastify.register(usersRoutes, {prefix: '/api/v1/users'});
+fastify.register(authRoutes, {prefix: '/api/v1/auth'});
 
 const start = async () => {
   try {
