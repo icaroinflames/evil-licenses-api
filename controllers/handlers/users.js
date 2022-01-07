@@ -105,7 +105,7 @@ const deleteUserHandler = async function(req, reply){
         try{
             const delUser = await client.query(delUserQuery, [req.params.userId]);
             const delUserRoles = await client.query(delUserRolesQuery, [req.params.userId]);
-            if(delUser && delUserRoles);
+            return (delUser && delUserRoles);
         }catch(ex){
             return false;
         }

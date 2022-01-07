@@ -28,7 +28,7 @@ fastify.register(fastifyJwt, { secret: '_5+rUs0.8IKw'});
 fastify.register(require('./controllers/schemas'));
 
 // Declare a route
-fastify.get('/', async (request, reply) => {
+fastify.get('/api/v1', async (request, reply) => {
   return { hello: 'world' };
 });
 
