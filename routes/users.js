@@ -15,7 +15,6 @@ const {
 } = require('../controllers/handlers/users');
 
 const getUsersOpts = {
-    headers: {$ref: 'headerSchema#'},
     schema: getUsersSchema,
     handler: getUsersHandler,
 };

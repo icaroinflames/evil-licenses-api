@@ -3,8 +3,9 @@ const commonSchemas = function(fastify, options, done){
     fastify.addSchema({
         $id: 'headerSchema',
         type: 'object',
+        required: ['Authorization'],        
         properties: {
-            token: {type: 'string', required: true}
+            Authorization: {type: 'string'}
         }
     });
 

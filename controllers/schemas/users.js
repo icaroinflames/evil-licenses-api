@@ -15,6 +15,7 @@ const genericResponse = {
 };
 
 const getUsersSchema = {
+    headers: {$ref: 'headerSchema#'},
     response: {
         200: {
             type: 'array',
@@ -24,6 +25,7 @@ const getUsersSchema = {
 };
 
 const getUserSchema = {
+    headers: {$ref: 'headerSchema#'},
     param: {
         id: {type: 'number'},
     },
@@ -33,6 +35,7 @@ const getUserSchema = {
 };
 
 const addUserSchema = {
+    headers: {$ref: 'headerSchema#'},
     body: {
         type: 'object',
         required: ['email', 'password'],
@@ -47,6 +50,7 @@ const addUserSchema = {
 };
 
 const updateUserSchema = {
+    headers: {$ref: 'headerSchema#'},
     param: {
         id: {type: 'number'},
     },
@@ -63,6 +67,7 @@ const updateUserSchema = {
 };
 
 const deleteUserSchema = {
+    headers: {$ref: 'headerSchema#'},
     param: {
         id: {type: 'number'},
     },  

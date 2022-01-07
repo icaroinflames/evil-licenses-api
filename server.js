@@ -26,6 +26,17 @@ fastify.register(fastifyBcrypt);
 fastify.register(fastifyAuth);
 fastify.register(fastifyJwt, { secret: '_5+rUs0.8IKw'});
 fastify.register(require('./controllers/schemas'));
+fastify.register(require('fastify-swagger'),{
+  routePrefix: '/documentation',
+  exposeRoute: true,
+  swagger: {
+    info: {
+      title: 'Test swagger',
+      description: 'Testing the Fastify swagger API',
+      version: '0.1.0'
+    }
+  }
+});
 
 // Declare a route
 fastify.get('/api/v1', async (request, reply) => {
