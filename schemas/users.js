@@ -26,8 +26,11 @@ const getUsersSchema = {
 
 const getUserSchema = {
     headers: {$ref: 'headerSchema#'},
-    param: {
-        id: {type: 'number'},
+    params: {
+        type: 'object',
+        properties: {
+            userId: {type: 'number'},
+        }
     },
     response: {
         200: user
@@ -51,8 +54,11 @@ const addUserSchema = {
 
 const updateUserSchema = {
     headers: {$ref: 'headerSchema#'},
-    param: {
-        id: {type: 'number'},
+    params: {
+        type: 'object',
+        properties: {
+            userId: {type: 'number'},
+        }
     },
     body: { 
         type: 'object',
@@ -68,9 +74,12 @@ const updateUserSchema = {
 
 const deleteUserSchema = {
     headers: {$ref: 'headerSchema#'},
-    param: {
-        id: {type: 'number'},
-    },  
+    params: {
+        type: 'object',
+        properties: {
+            userId: {type: 'number'},
+        }
+    }, 
     response: { 
         200: genericResponse
     } 

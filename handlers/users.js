@@ -1,10 +1,12 @@
+const {getUser} = require('../controllers/users');
 const getUsersHandler = async function(req, reply) {
+    
     const query = `SELECT u.user_id, u.email, r.name as role_name
                         FROM users u
                         INNER JOIN user_roles ur ON ur.user_id = u.user_id
                         INNER JOIN roles r ON r.role_id = ur.role_id
                         ORDER BY u.user_id`;
-
+                        
     let result = [];
     try{
         const queryResult = await this.pg.query(query);
@@ -36,32 +38,10 @@ const getUsersHandler = async function(req, reply) {
 };
 
 const getUserHandler = async function(req, reply){
-    const query = `SELECT u.user_id, u.email, r.name as role_name
-                        FROM users u
-                        INNER JOIN user_roles ur ON ur.user_id = u.user_id
-                        INNER JOIN roles r ON r.role_id = ur.role_id
-                        WHERE u.user_id = $1`;
-
+    
     let result = {};
     try{
-        const queryResult = await this.pg.query(query,[req.params.userId]);
-        if(queryResult.rows.length == 0){
-            return {};
-        }
-
-        result = queryResult.rows.reduce(function(acc, cur, index){       
-            if(index == 0){
-                acc.user_id = cur.user_id;
-                acc.email = cur.email;
-                acc.roles = [cur.role_name];
-
-                return acc;
-
-            }else{
-                acc.roles.push(cur.role_name);
-            }     
-            return acc;      
-        }, {});
+        result = getUser(this, req.params.userId);
         
     } catch(ex){
         console.error(ex);
