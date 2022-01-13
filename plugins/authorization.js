@@ -19,7 +19,13 @@ module.exports = fp(async function(fastify, options, done){
         const token = req.headers.authorization;
         try{
             req.decoded = await fastify.jwt.verify(token);
-            req.decoded.roles.includes('admin') ? done() : done(new Error('admin privileges needed'));
+            if(req.decoded.roles.includes('admin')){
+                done();
+            }else{
+                done(new Error('admin privileges needed'));
+            }
+            
+            
         }catch(err){
             reply.status(401);
             done(new Error('Invalid authorization'));

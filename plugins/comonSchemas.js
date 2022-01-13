@@ -8,5 +8,15 @@ module.exports = fp(function(fastify, options, done){
             authorization: {type: 'string'}
         }
     });
+
+    fastify.addSchema({
+        $id: 'userModelSchema',
+        type: 'object',
+        properties: {
+            user_id: { type: 'integer'},
+            email: { type: 'string'},
+            roles: { type: 'array'} 
+        }
+    });
     done();
 });

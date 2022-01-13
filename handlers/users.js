@@ -1,4 +1,5 @@
 const {getUser} = require('../controllers/users');
+
 const getUsersHandler = async function(req, reply) {
     
     const query = `SELECT u.user_id, u.email, r.name as role_name

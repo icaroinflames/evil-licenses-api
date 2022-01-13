@@ -19,7 +19,7 @@ const getUsersSchema = {
     response: {
         200: {
             type: 'array',
-            items: user
+            items: {$ref: 'userModelSchema#'}
         }
     }
 };
@@ -33,7 +33,7 @@ const getUserSchema = {
         }
     },
     response: {
-        200: user
+        200: {$ref: 'userModelSchema#'}
     },
 };
 

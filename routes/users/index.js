@@ -19,7 +19,7 @@ async function routes(fastify, options){
     const getUsersOpts = {
         schema: getUsersSchema,
         preHandler: fastify.auth([
-            fastify.verifyToken, 
+            fastify.verifyToken,
             fastify.verifyAdmin
         ], {relation: 'and' }),
         handler: getUsersHandler,
