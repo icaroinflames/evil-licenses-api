@@ -15,7 +15,19 @@ module.exports = fp(function(fastify, options, done){
         properties: {
             user_id: { type: 'integer'},
             email: { type: 'string'},
-            roles: { type: 'array'} 
+            roles: { 
+                type: 'array',
+                items: {type: 'string'}
+            }
+        }
+    });
+
+    fastify.addSchema({
+        $id:'genericResponse',
+        type: 'object',
+        properties: { 
+            responseCode: {type: 'string'},
+            message: {type: 'string'}
         }
     });
     done();

@@ -1,19 +1,3 @@
-const user = {
-    type: 'object',
-    properties: {
-        user_id: { type: 'integer'},
-        email: { type: 'string'},
-        roles: { type: 'array'} 
-    }
-};
-
-const genericResponse = {
-    type: 'object',
-    properties: { 
-        responseCode: {type: 'string'}
-    }
-};
-
 const getUsersSchema = {
     headers: {$ref: 'headerSchema#'},
     response: {
@@ -48,7 +32,7 @@ const addUserSchema = {
         }
     },
     response: { 
-        200: genericResponse
+        200: {$ref: 'genericResponse#'},
     }
 };
 
@@ -68,7 +52,7 @@ const updateUserSchema = {
         }
     },    
     response: { 
-        200: genericResponse
+        200: {$ref: 'genericResponse#'},
     }
 };
 
@@ -81,7 +65,7 @@ const deleteUserSchema = {
         }
     }, 
     response: { 
-        200: genericResponse
+        200: {$ref: 'genericResponse#'},
     } 
 };
 
